@@ -71,7 +71,7 @@ class CellData:
 		loading[1] += 1
 		return loading[0].get_slice("|", loading[1])
 	
-	func get_color() -> Color:
+	func get_color(theme: MapTheme = null) -> Color:
 		var c: Color
 		var override := get_override()
 		if override and override.color.a > 0:
@@ -81,7 +81,11 @@ class CellData:
 		
 		if c.a > 0:
 			return c
-		return MetSys.settings.theme.default_center_color
+		
+		if theme:
+			return theme.default_center_color
+		else:
+			return MetSys.settings.theme.default_center_color
 	
 	func get_border(idx: int) -> int:
 		var override := get_override()
@@ -89,7 +93,7 @@ class CellData:
 			return override.borders[idx]
 		return borders[idx]
 	
-	func get_border_color(idx: int) -> Color:
+	func get_border_color(idx: int, theme: MapTheme = null) -> Color:
 		var c: Color
 		var override := get_override()
 		if override and override.border_colors[idx].a > 0:
@@ -99,7 +103,11 @@ class CellData:
 		
 		if c.a > 0:
 			return c
-		return MetSys.settings.theme.default_border_color
+		
+		if theme:
+			return theme.default_border_color
+		else:
+			return MetSys.settings.theme.default_border_color
 	
 	func get_symbol() -> int:
 		var override := get_override()
