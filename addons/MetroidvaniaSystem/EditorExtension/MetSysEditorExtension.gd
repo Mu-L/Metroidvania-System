@@ -220,6 +220,9 @@ class RoomLinkPlugin extends EditorInspectorPlugin:
 class MetSysExportPlugin extends EditorExportPlugin:
 	var map_data_path: String
 	
+	func _get_name() -> String:
+		return "Metroidvania System Export Plugin"
+	
 	func _export_begin(features: PackedStringArray, is_debug: bool, path: String, flags: int) -> void:
 		map_data_path = MetSys.map_data.get_map_data_path()
 		var data := FileAccess.get_file_as_bytes(map_data_path)
